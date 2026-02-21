@@ -1,13 +1,11 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 30px;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -95,6 +93,8 @@ img{max-width:100%; display:block}
   font-size:16px;
   line-height:1.6;
   max-width:64ch;
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* Navbar */
@@ -112,13 +112,7 @@ img{max-width:100%; display:block}
   display:flex; align-items:center; gap:10px;
   font-weight:800; letter-spacing:.2px;
 }
-.logo{
-  width:34px; height:34px; border-radius:10px;
-  background: linear-gradient(135deg, rgba(245,184,59,1), rgba(245,184,59,.6));
-  box-shadow: 0 10px 22px rgba(245,184,59,.20);
-  display:grid; place-items:center;
-  color:#1c1c1c; font-weight:900;
-}
+
 .navLinks{
   display:flex; gap:18px; align-items:center;
   font-size:14px; color:var(--muted);
@@ -172,6 +166,10 @@ img{max-width:100%; display:block}
 /* Hero */
 .hero{
   padding:58px 0 34px;
+}
+
+.heroGridContainer{
+  text-align: left;
 }
 .heroGrid{
   display:grid;
@@ -264,6 +262,7 @@ img{max-width:100%; display:block}
   background: rgba(245,184,59,.18);
   border:1px solid rgba(245,184,59,.35);
   color:#fff;
+  margin: auto;
   font-size:18px;
 }
 
@@ -391,7 +390,7 @@ summary{
   font-weight:800;
 }
 summary::-webkit-details-marker{display:none}
-details p{margin:10px 0 0; color:var(--muted); line-height:1.65}
+details p{margin:10px 0 0; color:var(--muted); line-height:1.65; text-align: left;}
 .caret{opacity:.9}
 
 /* CTA band */
@@ -406,7 +405,7 @@ details p{margin:10px 0 0; color:var(--muted); line-height:1.65}
   gap:16px;
   box-shadow: var(--shadow);
 }
-.ctaBand h3{margin:0; font-size:22px}
+.ctaBand h3{margin:0; font-size:22px;text-align: left;}
 .ctaBand p{margin:6px 0 0; color:var(--muted); line-height:1.6}
 .ctaBand .buttons{display:flex; gap:10px; flex-wrap:wrap}
 

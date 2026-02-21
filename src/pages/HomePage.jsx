@@ -7,27 +7,18 @@ export default function HomePage() {
       <header className="nav">
         <div className="wrap">
           <div className="navRow">
-            <a className="brand" href="#top" aria-label="Campus Lost & Found">
-              <span className="logo">LF</span>
-              <span>Campus Lost &amp; Found</span>
-            </a>
+            <Link className="brand" to="/" aria-label="Campus Lost & Found">
+              <img src="/logo.png" alt="" className="logo" />
+            </Link>
 
             <nav className="navLinks" aria-label="Primary">
+              <Link to="/items">Browse items</Link>
               <a href="#how">How it works</a>
-              <a href="#search">Search</a>
-              <a href="#admins">For Buildings</a>
               <a href="#faq">FAQ</a>
-            </nav>
-
-            <div className="navActions">
-              <div className="search" role="search">
-                <span aria-hidden="true">🔎</span>
-                <input id="topSearch" type="search" placeholder="Search for items (demo)..." />
-              </div>
               <Link className="btn small ghost" to="/admin/login">
-                Login
+                Admin
               </Link>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
@@ -35,7 +26,7 @@ export default function HomePage() {
       <main id="top" className="hero">
         <div className="wrap">
           <div className="heroGrid">
-            <div>
+            <div className = "heroGridContainer">
               <span className="pill">🏫 Centralized campus-wide lost &amp; found</span>
               <h1>Lost Something On Campus?<br/>Let&apos;s Help You Find It</h1>
               <p>
@@ -46,7 +37,7 @@ export default function HomePage() {
 
               <div className="heroCtas">
                 <a className="btn primary" href="#cta">📌 Report an Item</a>
-                <a className="btn ghost" href="#search">🔍 Browse Lost Items</a>
+                <Link className="btn ghost" to="/items">🔍 Browse Lost Items</Link>
               </div>
 
               <div className="featureBar" aria-label="Highlights">
@@ -70,7 +61,7 @@ export default function HomePage() {
             </div>
 
             <div className="heroArt" aria-label="Hero illustration">
-              <img src="original-0791b30b5572fc7719571ef361625ebd.webp" alt="Lost and found hero illustration" />
+              <img src="/campus.jpg" alt="Lost and found hero illustration" />
             </div>
           </div>
         </div>
@@ -134,33 +125,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section tight">
-        <div className="wrap">
-          <span className="pill">🔐 Trust &amp; safety</span>
-          <h2 className="h2">Safe, secure, and responsible</h2>
-          <p className="sub">
-            We avoid public contact sharing and encourage ownership verification before any handoff.
-          </p>
-
-          <div className="grid3">
-            <div className="card">
-              <div className="icon">🛡</div>
-              <h3>No public personal info</h3>
-              <p>Students and staff don&apos;t expose phone numbers publicly on listings.</p>
-            </div>
-            <div className="card">
-              <div className="icon">🧾</div>
-              <h3>Verify ownership</h3>
-              <p>Claim forms require a unique identifying detail (e.g., sticker, scratch, contents).</p>
-            </div>
-            <div className="card">
-              <div className="icon">🧑‍💼</div>
-              <h3>Admin-controlled listings</h3>
-              <p>Found items are uploaded by building lost &amp; found desks for accuracy and trust.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+ 
 
       <section className="section">
         <div className="wrap">
@@ -177,48 +142,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section tight">
-        <div className="wrap">
-          <span className="pill">💬 Student feedback</span>
-          <h2 className="h2">Built for real people</h2>
-          <p className="sub">Simple UX, fast search, and a safe claim flow.</p>
-
-          <div className="grid3">
-            <div className="card quote">
-              <p>Found my keys in minutes. I used filters by building and it was right there.</p>
-              <div className="who">
-                <div className="avatar">A</div>
-                <div>
-                  <b>Abdul</b><br/>
-                  <small>Student</small>
-                </div>
-              </div>
-            </div>
-
-            <div className="card quote">
-              <p>The admin upload is super fast. This would reduce so much front desk traffic.</p>
-              <div className="who">
-                <div className="avatar">S</div>
-                <div>
-                  <b>Sam</b><br/>
-                  <small>Building staff</small>
-                </div>
-              </div>
-            </div>
-
-            <div className="card quote">
-              <p>Love that it doesn&apos;t show personal info publicly. Claiming feels safe.</p>
-              <div className="who">
-                <div className="avatar">M</div>
-                <div>
-                  <b>Maya</b><br/>
-                  <small>Student</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="faq" className="section">
         <div className="wrap">
@@ -256,7 +179,7 @@ export default function HomePage() {
               <p>Search campus-wide listings or report what you lost in seconds.</p>
             </div>
             <div className="buttons">
-              <a className="btn primary" href="#search">🔎 Search items</a>
+              <Link className="btn primary" to="/items">🔎 Browse items</Link>
               <a className="btn ghost" href="#top">📌 Report lost item</a>
             </div>
           </div>
@@ -265,43 +188,8 @@ export default function HomePage() {
 
       <footer>
         <div className="wrap">
-          <div className="footerGrid">
-            <div className="foot">
-              <div className="brand" style={{ marginBottom: '10px' }}>
-                <span className="logo">LF</span>
-                <span>Campus Lost &amp; Found</span>
-              </div>
-              <p className="sub" style={{ margin: 0, maxWidth: '44ch' }}>
-                One platform connecting every building&apos;s lost &amp; found so students can recover items faster.
-              </p>
-            </div>
-
-            <div className="foot">
-              <h4>Platform</h4>
-              <a href="#top">Home</a>
-              <a href="#search">Search</a>
-              <a href="#how">How it works</a>
-              <a href="#faq">FAQ</a>
-            </div>
-
-            <div className="foot">
-              <h4>For Staff</h4>
-              <Link to="/admin/login">Admin tools</Link>
-              <Link to="/admin/login">Upload found items</Link>
-              <Link to="/admin/login">Manage claims</Link>
-            </div>
-
-            <div className="foot">
-              <h4>Support</h4>
-              <a href="#faq">Help center</a>
-              <a href="#faq">Privacy policy</a>
-              <a href="#faq">Terms</a>
-            </div>
-          </div>
-
           <div className="copy">
-            <span>© {new Date().getFullYear()} Campus Lost &amp; Found — Demo landing page</span>
-            <span>Made for a 24-hour hackathon</span>
+            <span>© 2026 Reclaim</span>
           </div>
         </div>
       </footer>

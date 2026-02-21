@@ -1,22 +1,16 @@
 /* Admin localStorage utilities - shared with admin pages */
 
 export const LS = {
-  ADMINS: 'lf_admins',
   SESSION: 'lf_admin_session',
   ITEMS: 'lf_items',
 };
 
-export function getAdmins() {
-  try {
-    return JSON.parse(localStorage.getItem(LS.ADMINS) || '[]');
-  } catch {
-    return [];
-  }
-}
-
-export function setAdmins(list) {
-  localStorage.setItem(LS.ADMINS, JSON.stringify(list));
-}
+/** Hardcoded super user — only this account can log in to the admin panel. */
+export const SUPER_ADMIN = {
+  email: 'admin@campus.ca',
+  password: 'admin123',
+  building: 'Campus',
+};
 
 export function setSession(sessionObj) {
   localStorage.setItem(LS.SESSION, JSON.stringify(sessionObj));

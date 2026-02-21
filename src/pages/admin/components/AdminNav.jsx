@@ -21,8 +21,8 @@ export default function AdminNav() {
       <div className="wrap">
         <div className="navRow">
           <Link className="brand" to="/admin/dashboard">
-            <span className="logo">LF</span>
-            <span>Admin Panel</span>
+            <img src="/logo.png" alt="" className="logo" />
+            <span>(Admin Panel)</span>
           </Link>
 
           <nav className="navLinks" aria-label="Admin navigation">

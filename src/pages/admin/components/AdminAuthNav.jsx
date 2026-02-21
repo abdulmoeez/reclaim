@@ -7,8 +7,7 @@ export default function AdminAuthNav({ backTo, backLabel }) {
       <div className="wrap">
         <div className="navRow">
           <Link className="brand" to="/">
-            <span className="logo">LF</span>
-            <span>Campus Lost &amp; Found</span>
+            <img src="/logo.png" alt="" className="logo" />
           </Link>
           <div className="navActions">
             <Link className="btn small ghost" to={backTo || '/'}>

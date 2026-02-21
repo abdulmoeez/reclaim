@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAdmin } from './AdminContext';
 import AdminAuthNav from './components/AdminAuthNav';
 import AdminToast from './components/AdminToast';
@@ -31,8 +31,8 @@ export default function AdminLogin() {
           <span className="pill">🔐 Admin Access</span>
           <h1 className="h1">Login</h1>
           <p className="sub">
-            For building lost &amp; found staff. Demo uses localStorage (no
-            backend).
+            For building lost &amp; found staff. Sign in with the super admin
+            credentials.
           </p>
 
           <div className="hr" />
@@ -71,15 +71,8 @@ export default function AdminLogin() {
               <button className="btn primary" type="submit">
                 Login
               </button>
-              <Link className="btn ghost" to="/admin/register">
-                Create admin account
-              </Link>
             </div>
           </form>
-
-          <div className="centerLinks">
-            <span className="small">Tip: Register an admin first if you haven&apos;t.</span>
-          </div>
         </div>
       </main>
 

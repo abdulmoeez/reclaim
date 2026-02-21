@@ -27,17 +27,7 @@
   padding: 14px 0;
 }
 .admin-page .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; }
-.admin-page .logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(245, 184, 59, 1), rgba(245, 184, 59, 0.6));
-  box-shadow: 0 10px 22px rgba(245, 184, 59, 0.2);
-  display: grid;
-  place-items: center;
-  color: #1c1c1c;
-  font-weight: 900;
-}
+
 .admin-page .navLinks { display: flex; gap: 16px; color: #bfe2dd; font-size: 14px; align-items: center; }
 .admin-page .navLinks a:hover { color: #fff; }
 .admin-page .navActions { display: flex; gap: 10px; align-items: center; }

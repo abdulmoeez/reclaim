@@ -3,10 +3,9 @@ import {
   getSession,
   setSession,
   clearSession,
-  getAdmins,
-  setAdmins,
   getItems,
   setItems,
+  SUPER_ADMIN,
 } from './adminStorage';
 
 const AdminContext = createContext(null);
@@ -31,55 +30,22 @@ export function AdminProvider({ children }) {
         return false;
       }
 
-      const admins = getAdmins();
-      const found = admins.find((a) => a.email === email && a.password === password);
-      if (!found) {
+      if (
+        email !== SUPER_ADMIN.email ||
+        password !== SUPER_ADMIN.password
+      ) {
         showToast('Invalid credentials.');
         return false;
       }
 
       const sessionObj = {
-        email: found.email,
-        building: found.building,
+        email: SUPER_ADMIN.email,
+        building: SUPER_ADMIN.building,
         loggedInAt: Date.now(),
       };
       setSession(sessionObj);
       setSessionState(sessionObj);
       showToast('Welcome!');
-      return true;
-    },
-    [showToast]
-  );
-
-  const register = useCallback(
-    (form) => {
-      const email = form.email.value.trim().toLowerCase();
-      const building = form.building.value.trim();
-      const password = form.password.value;
-      const password2 = form.password2.value;
-
-      if (!email || !building || !password) {
-        showToast('Please fill all fields.');
-        return false;
-      }
-      if (password.length < 6) {
-        showToast('Password must be at least 6 characters.');
-        return false;
-      }
-      if (password !== password2) {
-        showToast('Passwords do not match.');
-        return false;
-      }
-
-      const admins = getAdmins();
-      if (admins.some((a) => a.email === email)) {
-        showToast('Admin already exists. Please login.');
-        return false;
-      }
-
-      admins.push({ email, building, password });
-      setAdmins(admins);
-      showToast('Admin registered. You can login now.');
       return true;
     },
     [showToast]
@@ -96,7 +62,6 @@ export function AdminProvider({ children }) {
     toastMessage,
     showToast,
     login,
-    register,
     signOut,
     getItems,
     setItems,
