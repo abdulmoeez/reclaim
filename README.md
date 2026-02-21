@@ -7,9 +7,9 @@
 ## 🎯 Features
 
 - **Public browse** — Search and filter lost & found items by type (found/lost), status (open/claimed/returned), building, category, date range, and keywords. Sort by newest, oldest, or title.
-- **Admin panel** — Secure login for staff with a single hardcoded super-admin account. Dashboard with a status donut chart; full CRUD for items (add, edit status, delete) scoped by building.
+- **Admin panel** — Secure login for staff with a single hardcoded super-admin account. Dashboard with a status donut chart; full CRUD for items (add, edit status, delete) and claim review (approve/reject/returned) scoped by building.
 - **Add items** — Admin form to log new items with type, category, location, date, description, optional photo (base64), and tags. Building is auto-filled from the logged-in admin.
-- **Item cards** — Each listing shows a thumbnail (placeholder or uploaded image), type/status badges, title, description, category, location, date, and a “Copy share text” action for easy sharing.
+- **Item cards** — Each listing shows a thumbnail (placeholder or uploaded image), type/status badges, title, description, category, location, date, and a “Claim” button for ownership verification.
 - **Responsive UI** — Layouts adapt for mobile and desktop. Admin and browse pages use a consistent teal/gold theme with clear navigation and toasts for feedback.
 - **Seed data** — Up to 20 hardcoded dummy items with placeholder images are loaded when the app is first run (when localStorage is empty), so the app is usable immediately.
 
@@ -105,7 +105,7 @@ The app is a single-page React application. Routing is handled by React Router; 
 
 ## 🚀 Future Improvements
 
-While Reclaim currently uses browser-based storage to support rapid prototyping within a 24-hour hackathon, the project is designed with scalability and real-world deployment in mind. Planned improvements include:
+Things we'd add for a real deployment:
 
 ### 1. Real Backend & Secure Database
 

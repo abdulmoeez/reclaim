@@ -6,14 +6,14 @@ export const LS = {
   CLAIMS: 'lf_claims',
 };
 
-/** Hardcoded super user — only this account can log in to the admin panel. */
+// super admin (only account that can log in)
 export const SUPER_ADMIN = {
   email: 'admin@campus.ca',
   password: 'admin123',
   building: 'Administration Building (Duckworth Quadrangle)',
 };
 
-/** Hardcoded list of campus buildings for dropdowns. */
+// campus buildings for dropdowns
 export const BUILDINGS = [
   'Administration Building (Duckworth Quadrangle)',
   'Agriculture Building',
@@ -70,7 +70,7 @@ export function cryptoRandomId() {
     .join('');
 }
 
-/** Local placeholder image for seed items (public/seed/placeholder.svg). Replace with your own image if desired. */
+// placeholder for seed item thumbnails
 function seedImage() {
   return '/seed/placeholder.svg';
 }
@@ -181,7 +181,7 @@ export function fmtDate(d) {
   return d || '';
 }
 
-/** Claims – public claim submissions for items (unique detail, claimant info). */
+// claims (unique detail + claimant info)
 export function getClaims() {
   try {
     return JSON.parse(localStorage.getItem(LS.CLAIMS) || '[]');

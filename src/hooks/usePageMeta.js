@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 
-/**
- * Sets document title and meta description for the current page.
- * @param {string} title - Page title (e.g. "Browse Items | Reclaim")
- * @param {string} [description] - Meta description for SEO/social
- */
+// sets page title and meta description
 export function usePageMeta(title, description = '') {
   useEffect(() => {
     if (title) {
