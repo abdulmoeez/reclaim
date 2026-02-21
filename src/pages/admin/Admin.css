@@ -75,6 +75,7 @@
   color: #bfe2dd;
   line-height: 1.6;
   max-width: 70ch;
+  margin: auto;
 }
 .admin-page .grid2 {
   display: grid;
@@ -199,6 +200,7 @@
   font-size: 13px;
   color: #bfe2dd;
   margin: 0 0 6px;
+  text-align: left;
 }
 .admin-page .formRow {
   display: grid;

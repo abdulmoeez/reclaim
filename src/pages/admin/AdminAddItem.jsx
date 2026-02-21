@@ -218,9 +218,7 @@ export default function AdminAddItem() {
                   className="input"
                   onChange={handlePhotoChange}
                 />
-                <div className="small" style={{ marginTop: 6 }}>
-                  Stored locally for demo (base64).
-                </div>
+           
               </div>
 
               <div
@@ -267,15 +265,8 @@ export default function AdminAddItem() {
               )}
             </div>
 
-            <div className="hr" />
+            <div/>
 
-            <h3>Safety checklist</h3>
-            <p className="small">Good judge points:</p>
-            <ul className="small" style={{ lineHeight: 1.7, margin: '10px 0 0 18px' }}>
-              <li>No public personal details in listings</li>
-              <li>Ask claimant for a unique identifying detail</li>
-              <li>Mark Returned only after verification</li>
-            </ul>
           </div>
         </div>
       </main>

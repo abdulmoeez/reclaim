@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { getItems, setItems, cryptoRandomId } from './admin/adminStorage';
+import { getItems } from './admin/adminStorage';
 import ItemCard from './ItemCard';
 import './ItemsPage.css';
 
@@ -145,108 +145,6 @@ export default function ItemsPage() {
     setFilterState(defaultFilterState);
   }, []);
 
-  const handleSeed = useCallback(() => {
-    const now = new Date();
-    const iso = (d) => d.toISOString().slice(0, 10);
-    const daysAgo = (n) => {
-      const d = new Date(now);
-      d.setDate(d.getDate() - n);
-      return iso(d);
-    };
-
-    const seed = [
-      {
-        id: cryptoRandomId(),
-        type: 'found',
-        title: 'Black Wallet',
-        category: 'Wallet',
-        building: 'Engineering',
-        location: 'Main entrance desk',
-        date: daysAgo(3),
-        status: 'open',
-        description:
-          'Found near main entrance. Has a small sticker inside.',
-        photoDataUrl: '',
-        contactEmail: '',
-        tags: ['wallet', 'black'],
-      },
-      {
-        id: cryptoRandomId(),
-        type: 'found',
-        title: 'AirPods Case',
-        category: 'Electronics',
-        building: 'Library',
-        location: '2nd floor study area',
-        date: daysAgo(4),
-        status: 'claimed',
-        description:
-          'White case. Ask claimant to describe engraving/mark.',
-        photoDataUrl: '',
-        contactEmail: '',
-        tags: ['airpods', 'case'],
-      },
-      {
-        id: cryptoRandomId(),
-        type: 'lost',
-        title: 'Student ID Card',
-        category: 'ID / Cards',
-        building: 'Business',
-        location: 'Near elevators',
-        date: daysAgo(7),
-        status: 'open',
-        description: 'Name starts with M. Please verify student number.',
-        photoDataUrl: '',
-        contactEmail: 'student@example.com',
-        tags: ['id'],
-      },
-      {
-        id: cryptoRandomId(),
-        type: 'found',
-        title: 'Silver Keys (3 keys)',
-        category: 'Keys',
-        building: 'UC',
-        location: 'Outside room 102',
-        date: daysAgo(1),
-        status: 'open',
-        description: "Keychain says 'Toyota'.",
-        photoDataUrl: '',
-        contactEmail: '',
-        tags: ['keys'],
-      },
-      {
-        id: cryptoRandomId(),
-        type: 'lost',
-        title: 'iPhone (Blue case)',
-        category: 'Electronics',
-        building: 'Science',
-        location: 'Lab hallway',
-        date: daysAgo(10),
-        status: 'open',
-        description: 'Blue case with minor scratches.',
-        photoDataUrl: '',
-        contactEmail: '',
-        tags: ['iphone', 'phone'],
-      },
-      {
-        id: cryptoRandomId(),
-        type: 'found',
-        title: 'Water Bottle (Hydro Flask)',
-        category: 'Other',
-        building: 'Gym',
-        location: 'Locker room',
-        date: daysAgo(2),
-        status: 'returned',
-        description: 'Green bottle.',
-        photoDataUrl: '',
-        contactEmail: '',
-        tags: ['bottle'],
-      },
-    ];
-    setItems(seed);
-    setRefreshKey((k) => k + 1);
-    showToast('Demo items loaded.');
-  }, [showToast]);
-
   const updateFilter = useCallback((key, value) => {
     setFilterState((prev) => ({ ...prev, [key]: value }));
   }, []);
@@ -282,9 +180,8 @@ export default function ItemsPage() {
         <span className="pill">🔎 Browse campus-wide listings</span>
         <h1>Lost &amp; Found Items</h1>
         <p className="sub">
-          This page reads from <b>browser localStorage</b> (the same data the
-          admin panel writes). For the demo, open the admin panel and add some
-          items, then refresh this page.
+          Browse lost and found items reported across campus. Use the filters
+          below to narrow your search by type, building, category, or date.
         </p>
 
         <section className="filters" aria-label="Filters">
@@ -328,14 +225,6 @@ export default function ItemsPage() {
                 aria-label="Clear all filters"
               >
                 Clear
-              </button>
-              <button
-                type="button"
-                className="btn ghost"
-                onClick={handleSeed}
-                aria-label="Load demo items"
-              >
-                Load demo items
               </button>
             </div>
           </div>
@@ -483,8 +372,8 @@ export default function ItemsPage() {
           </div>
           {filteredList.length === 0 && (
             <div className="empty">
-              No items match your filters. Try clearing filters or loading
-              demo items.
+              No items match your filters. Try clearing filters or adjusting
+              your search.
             </div>
           )}
         </section>
