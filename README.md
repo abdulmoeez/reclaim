@@ -98,7 +98,72 @@ The app is a single-page React application. Routing is handled by React Router; 
 | Styling        | Plain CSS (App.css, ItemsPage.css, Admin.css) |
 | Validation     | PropTypes (runtime prop checks) |
 | Data / state   | localStorage (no backend); React Context for admin session and toasts |
-| Images (seed)  | Picsum Photos (placeholder URLs) for dummy items |
+| Images (seed)  | Local placeholder (public/seed/) for dummy items |
+
+---
+
+## 🚀 Future Improvements
+
+While Reclaim currently uses browser-based storage to support rapid prototyping within a 24-hour hackathon, the project is designed with scalability and real-world deployment in mind. Planned improvements include:
+
+### 1. Real Backend & Secure Database
+
+Replace localStorage with a production-ready backend such as Firebase, Supabase, or MongoDB + Express.
+
+- Support multi-user access with persistent data across devices.
+- Implement role-based access control so each building or department can only manage its own items.
+- Add audit logs to track item updates and claim actions.
+
+### 2. Notifications (Email, SMS, Push)
+
+Send email or SMS notifications to students when:
+
+- a matching item is found
+- their claim is approved or rejected
+- an item is marked as returned
+
+Notify admins when new claims are submitted or require review.
+
+- Later expansion to push notifications via a mobile app or PWA.
+
+### 3. Proper Authentication & Institution Verification
+
+Replace the hardcoded admin login with secure authentication.
+
+- Verify users via institution email domains or university SSO (Google/Microsoft/SAML).
+- Prevent unauthenticated or non-institution users from browsing or submitting claims, depending on campus policy.
+
+### 4. Multi-University Support (No Hardcoding)
+
+Remove hardcoded buildings and contacts.
+
+- Integrate university APIs (where available) or provide an onboarding flow for new campuses.
+- Dynamically load buildings, departments, pickup locations, and contact information per institution.
+- Make Reclaim deployable across multiple universities from a single codebase.
+
+### 5. Smart Matching & Recommendations
+
+Automatically suggest potential matches when a user reports a lost item using:
+
+- category, keywords, date range, and building proximity
+- Future enhancement: basic image similarity for common items like wallets or phones.
+
+
+### 6. Analytics for Campus Operations
+
+Dashboard insights for campuses:
+
+- most commonly lost items
+- peak locations and times
+- recovery rates by building
+
+Helps institutions measure impact and improve operations.
+
+### 7. Accessibility & Mobile Experience
+
+- Improve accessibility (keyboard navigation, ARIA labels, contrast).
+- Add multilingual support.
+- Convert the site into a Progressive Web App (PWA) for installable, mobile-first use.
 
 ---
 
