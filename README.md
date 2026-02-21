@@ -176,6 +176,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Built with ❤️ for .devHacks 2026 by:
 - [Abdul Moeez](https://github.com/abdulmoeez)
-- [Syed Affan Akhtar] (https://github.com/AffanAkhtar1)
+- [Syed Affan Akhtar](https://github.com/AffanAkhtar1)
 - [Anas Motasin Khan](https://github.com/1AnasKhan)
 - [Mohammed Kausar](https://github.com/MohdKausar45)
