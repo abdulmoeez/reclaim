@@ -174,15 +174,11 @@ export default function ItemsPage() {
             <nav className="navLinks" aria-label="Primary">
               <Link to="/#how">How it works</Link>
               <Link to="/items">Browse items</Link>
-              <Link to="/admin/login">Admin</Link>
             </nav>
 
             <div className="navActions">
               <Link className="btn small ghost" to="/">
                 ← Home
-              </Link>
-              <Link className="btn small ghost" to="/admin/login">
-                Admin Login
               </Link>
             </div>
 
@@ -199,9 +195,7 @@ export default function ItemsPage() {
           <div className={`navDrawer ${mobileNavOpen ? 'isOpen' : ''}`}>
             <Link to="/#how" onClick={() => setMobileNavOpen(false)}>How it works</Link>
             <Link to="/items" onClick={() => setMobileNavOpen(false)}>Browse items</Link>
-            <Link to="/admin/login" onClick={() => setMobileNavOpen(false)}>Admin</Link>
             <Link to="/" onClick={() => setMobileNavOpen(false)}>← Home</Link>
-            <Link to="/admin/login" onClick={() => setMobileNavOpen(false)}>Admin Login</Link>
           </div>
         </div>
       </header>

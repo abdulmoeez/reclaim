@@ -38,9 +38,6 @@ export default function HomePage() {
               <Link to="/items">Browse items</Link>
               <a href="#how">How it works</a>
               <a href="#faq">FAQ</a>
-              <Link className="btn small ghost" to="/admin/login">
-                Admin
-              </Link>
             </nav>
 
             <button
@@ -57,7 +54,6 @@ export default function HomePage() {
             <Link to="/items" onClick={() => setMobileNavOpen(false)}>Browse items</Link>
             <a href="#how" onClick={() => setMobileNavOpen(false)}>How it works</a>
             <a href="#faq" onClick={() => setMobileNavOpen(false)}>FAQ</a>
-            <Link to="/admin/login" onClick={() => setMobileNavOpen(false)}>Admin</Link>
           </div>
         </div>
       </header>
@@ -75,8 +71,7 @@ export default function HomePage() {
               </p>
 
               <div className="heroCtas">
-                <Link className="btn primary" to="/admin/login">📌 Report an Item</Link>
-                <Link className="btn ghost" to="/items">🔍 Browse Lost Items</Link>
+                <Link className="btn primary" to="/items">🔍 Browse Lost Items</Link>
               </div>
 
               <div className="featureBar" aria-label="Highlights">
@@ -216,7 +211,6 @@ export default function HomePage() {
             </div>
             <div className="buttons">
               <Link className="btn primary" to="/items">🔎 Browse items</Link>
-              <Link className="btn ghost" to="/admin/login">📌 Report lost item</Link>
             </div>
           </div>
         </div>
