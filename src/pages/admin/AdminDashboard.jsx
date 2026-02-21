@@ -4,10 +4,12 @@ import { useAdmin } from './AdminContext';
 import AdminNav from './components/AdminNav';
 import AdminToast from './components/AdminToast';
 import DonutChart from './components/DonutChart';
+import { usePageMeta } from '../../hooks/usePageMeta';
 import { getItems, escapeHtml, fmtDate } from './adminStorage';
 import './Admin.css';
 
 export default function AdminDashboard() {
+  usePageMeta('Dashboard | Reclaim Admin', 'Admin dashboard: view stats, recent items, and status breakdown for lost and found.');
   const { session, requireSession } = useAdmin();
   const navigate = useNavigate();
 

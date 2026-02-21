@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAdmin } from './AdminContext';
 import AdminNav from './components/AdminNav';
 import AdminToast from './components/AdminToast';
-import { getItems, setItems, cryptoRandomId, fileToDataUrl } from './adminStorage';
+import { usePageMeta } from '../../hooks/usePageMeta';
+import { getItems, setItems, BUILDINGS, cryptoRandomId, fileToDataUrl } from './adminStorage';
 import './Admin.css';
 
 const CATEGORIES = [
@@ -18,6 +19,7 @@ const CATEGORIES = [
 ];
 
 export default function AdminAddItem() {
+  usePageMeta('Add Item | Reclaim Admin', 'Add a new lost or found item: type, category, location, date, photo, and description.');
   const { session, requireSession, showToast } = useAdmin();
   const navigate = useNavigate();
   const [photoPreview, setPhotoPreview] = useState(null);
@@ -152,18 +154,19 @@ export default function AdminAddItem() {
               <div className="formRow">
                 <div className="formGroup">
                   <label htmlFor="add-building">Building *</label>
-                  <input
+                  <select
                     id="add-building"
                     name="building"
                     className="input"
-                    placeholder="Engineering"
-                    defaultValue={session.building}
-                    readOnly
                     required
-                  />
-                  <div className="small" style={{ marginTop: 6 }}>
-                    Auto-filled from your admin building.
-                  </div>
+                    defaultValue={session.building}
+                  >
+                    {BUILDINGS.map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="formGroup">
                   <label htmlFor="add-location">Location in building *</label>

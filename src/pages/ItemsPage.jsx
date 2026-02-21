@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
+import { usePageMeta } from '../hooks/usePageMeta';
 import { Link } from 'react-router-dom';
-import { getItems } from './admin/adminStorage';
+import { getItems, BUILDINGS } from './admin/adminStorage';
 import ItemCard from './ItemCard';
 import './ItemsPage.css';
 
@@ -113,16 +114,16 @@ const defaultFilterState = {
 };
 
 export default function ItemsPage() {
+  usePageMeta(
+    'Browse Items | Reclaim',
+    'Browse lost and found items reported across campus. Filter by type, building, category, and date.'
+  );
   const [filterState, setFilterState] = useState(defaultFilterState);
   const [toastMessage, setToastMessage] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const items = useMemo(() => getItems(), [refreshKey]);
 
-  const buildings = useMemo(
-    () => uniqueSorted(items.map((i) => i.building)),
-    [items]
-  );
   const categories = useMemo(
     () => uniqueSorted(items.map((i) => i.category)),
     [items]
@@ -149,6 +150,8 @@ export default function ItemsPage() {
     setFilterState((prev) => ({ ...prev, [key]: value }));
   }, []);
 
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <div className="items-page">
       <header className="nav">
@@ -172,6 +175,23 @@ export default function ItemsPage() {
                 Admin Login
               </Link>
             </div>
+
+            <button
+              type="button"
+              className="navMenuBtn"
+              aria-label="Toggle menu"
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((o) => !o)}
+            >
+              {mobileNavOpen ? '✕' : '☰'}
+            </button>
+          </div>
+          <div className={`navDrawer ${mobileNavOpen ? 'isOpen' : ''}`}>
+            <Link to="/#how" onClick={() => setMobileNavOpen(false)}>How it works</Link>
+            <Link to="/items" onClick={() => setMobileNavOpen(false)}>Browse items</Link>
+            <Link to="/admin/login" onClick={() => setMobileNavOpen(false)}>Admin</Link>
+            <Link to="/" onClick={() => setMobileNavOpen(false)}>← Home</Link>
+            <Link to="/admin/login" onClick={() => setMobileNavOpen(false)}>Admin Login</Link>
           </div>
         </div>
       </header>
@@ -266,7 +286,7 @@ export default function ItemsPage() {
                 onChange={(e) => updateFilter('building', e.target.value)}
               >
                 <option value="all">All buildings</option>
-                {buildings.map((b) => (
+                {BUILDINGS.map((b) => (
                   <option key={b} value={b}>
                     {b}
                   </option>

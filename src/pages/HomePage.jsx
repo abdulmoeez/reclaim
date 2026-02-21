@@ -1,7 +1,30 @@
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { usePageMeta } from '../hooks/usePageMeta';
+import { getItems } from './admin/adminStorage';
 import '../App.css';
 
 export default function HomePage() {
+  usePageMeta(
+    'Reclaim | Campus Lost & Found',
+    'Campus lost & found. Search and browse lost and found items across campus. Report lost items and recover what matters.'
+  );
+
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  const stats = useMemo(() => {
+    const items = getItems();
+    const total = items.length;
+    const buildings = new Set(items.map((i) => i.building).filter(Boolean));
+    const returned = items.filter((i) => i.status === 'returned').length;
+    const recoveryRate = total > 0 ? Math.round((returned / total) * 100) : 0;
+    return {
+      buildingsConnected: buildings.size,
+      itemsLogged: total,
+      recoveryRate,
+    };
+  }, []);
+
   return (
     <>
       <header className="nav">
@@ -19,6 +42,22 @@ export default function HomePage() {
                 Admin
               </Link>
             </nav>
+
+            <button
+              type="button"
+              className="navMenuBtn"
+              aria-label="Toggle menu"
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((o) => !o)}
+            >
+              {mobileNavOpen ? '✕' : '☰'}
+            </button>
+          </div>
+          <div className={`navDrawer ${mobileNavOpen ? 'isOpen' : ''}`}>
+            <Link to="/items" onClick={() => setMobileNavOpen(false)}>Browse items</Link>
+            <a href="#how" onClick={() => setMobileNavOpen(false)}>How it works</a>
+            <a href="#faq" onClick={() => setMobileNavOpen(false)}>FAQ</a>
+            <Link to="/admin/login" onClick={() => setMobileNavOpen(false)}>Admin</Link>
           </div>
         </div>
       </header>
@@ -26,7 +65,7 @@ export default function HomePage() {
       <main id="top" className="hero">
         <div className="wrap">
           <div className="heroGrid">
-            <div className = "heroGridContainer">
+            <div className="heroGridContainer">
               <span className="pill">🏫 Centralized campus-wide lost &amp; found</span>
               <h1>Lost Something On Campus?<br/>Let&apos;s Help You Find It</h1>
               <p>
@@ -36,7 +75,7 @@ export default function HomePage() {
               </p>
 
               <div className="heroCtas">
-                <a className="btn primary" href="#cta">📌 Report an Item</a>
+                <Link className="btn primary" to="/admin/login">📌 Report an Item</Link>
                 <Link className="btn ghost" to="/items">🔍 Browse Lost Items</Link>
               </div>
 
@@ -125,8 +164,6 @@ export default function HomePage() {
         </div>
       </section>
 
- 
-
       <section className="section">
         <div className="wrap">
           <span className="pill">📈 Impact</span>
@@ -134,14 +171,13 @@ export default function HomePage() {
           <p className="sub">Even a small rollout saves hours of walking around and reduces front-desk traffic.</p>
 
           <div className="stats">
-            <div className="stat"><b>12</b><span>Buildings connected</span></div>
-            <div className="stat"><b>300+</b><span>Items logged</span></div>
-            <div className="stat"><b>82%</b><span>Recovery rate</span></div>
-            <div className="stat"><b>&lt; 2 min</b><span>Average search time</span></div>
+            <div className="stat"><b>{stats.buildingsConnected}</b><span>Buildings connected</span></div>
+            <div className="stat"><b>{stats.itemsLogged}</b><span>Items logged</span></div>
+            <div className="stat"><b>{stats.recoveryRate}%</b><span>Recovery rate</span></div>
+            <div className="stat"><b>Instant</b><span>Search</span></div>
           </div>
         </div>
       </section>
-
 
       <section id="faq" className="section">
         <div className="wrap">
@@ -180,7 +216,7 @@ export default function HomePage() {
             </div>
             <div className="buttons">
               <Link className="btn primary" to="/items">🔎 Browse items</Link>
-              <a className="btn ghost" href="#top">📌 Report lost item</a>
+              <Link className="btn ghost" to="/admin/login">📌 Report lost item</Link>
             </div>
           </div>
         </div>

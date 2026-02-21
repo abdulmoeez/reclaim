@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function AdminAuthNav({ backTo, backLabel }) {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   return (
     <header className="nav">
       <div className="wrap">
@@ -14,6 +16,20 @@ export default function AdminAuthNav({ backTo, backLabel }) {
               {backLabel || '← Back to site'}
             </Link>
           </div>
+          <button
+            type="button"
+            className="navMenuBtn"
+            aria-label="Toggle menu"
+            aria-expanded={mobileNavOpen}
+            onClick={() => setMobileNavOpen((o) => !o)}
+          >
+            {mobileNavOpen ? '✕' : '☰'}
+          </button>
+        </div>
+        <div className={`navDrawer ${mobileNavOpen ? 'isOpen' : ''}`}>
+          <Link to={backTo || '/'} onClick={() => setMobileNavOpen(false)}>
+            {backLabel || '← Back to site'}
+          </Link>
         </div>
       </div>
     </header>

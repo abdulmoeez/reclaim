@@ -97,6 +97,9 @@
   .admin-page .navLinks {
     display: none;
   }
+  .admin-page .navActions {
+    display: none;
+  }
 }
 
 .admin-page .card {

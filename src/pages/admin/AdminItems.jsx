@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAdmin } from './AdminContext';
 import AdminNav from './components/AdminNav';
 import AdminToast from './components/AdminToast';
+import { usePageMeta } from '../../hooks/usePageMeta';
 import { getItems, setItems, escapeHtml, fmtDate } from './adminStorage';
 import './Admin.css';
 
@@ -21,6 +22,7 @@ function updateItemStatus(id, status, getItemsFn, setItemsFn) {
 }
 
 export default function AdminItems() {
+  usePageMeta('Manage Items | Reclaim Admin', 'Search, filter, update status, and delete lost and found items.');
   const { session, requireSession, getItems: getItemsFn, setItems: setItemsFn, showToast } =
     useAdmin();
   const navigate = useNavigate();

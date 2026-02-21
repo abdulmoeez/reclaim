@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAdmin } from './AdminContext';
 import AdminAuthNav from './components/AdminAuthNav';
 import AdminToast from './components/AdminToast';
+import { usePageMeta } from '../../hooks/usePageMeta';
 import './Admin.css';
 
 export default function AdminLogin() {
+  usePageMeta('Admin Login | Reclaim', 'Sign in to the Reclaim admin panel to manage lost and found items.');
   const { session, login } = useAdmin();
   const navigate = useNavigate();
 

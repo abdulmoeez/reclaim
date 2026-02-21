@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdmin } from '../AdminContext';
 
 export default function AdminNav() {
   const { session, signOut } = useAdmin();
   const navigate = useNavigate();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   function handleSignOut() {
     signOut();
@@ -43,6 +45,31 @@ export default function AdminNav() {
               Sign out
             </button>
           </div>
+
+          <button
+            type="button"
+            className="navMenuBtn"
+            aria-label="Toggle menu"
+            aria-expanded={mobileNavOpen}
+            onClick={() => setMobileNavOpen((o) => !o)}
+          >
+            {mobileNavOpen ? '✕' : '☰'}
+          </button>
+        </div>
+        <div className={`navDrawer ${mobileNavOpen ? 'isOpen' : ''}`}>
+          <Link to="/admin/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
+          <Link to="/admin/items" onClick={() => setMobileNavOpen(false)}>Items</Link>
+          <Link to="/admin/add-item" onClick={() => setMobileNavOpen(false)}>Add Item</Link>
+          <Link to="/" onClick={() => setMobileNavOpen(false)}>Public Site</Link>
+          <span className="navDrawerAction small" style={{ paddingTop: 8, paddingBottom: 8 }}>{whoText}</span>
+          <button
+            type="button"
+            className="navDrawerAction"
+            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', font: 'inherit', color: 'inherit' }}
+            onClick={() => { setMobileNavOpen(false); handleSignOut(); }}
+          >
+            Sign out
+          </button>
         </div>
       </div>
     </header>

@@ -165,6 +165,9 @@
   .items-page .navLinks {
     display: none;
   }
+  .items-page .navActions {
+    display: none;
+  }
 }
 
 .items-page .metaBar {

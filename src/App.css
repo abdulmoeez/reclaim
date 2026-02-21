@@ -165,6 +165,55 @@ img {
   min-width: 320px;
   justify-content: flex-end;
 }
+.navMenuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  transition: background 0.2s;
+}
+.navMenuBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+.navMenuBtn[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.18);
+}
+.navDrawer {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  padding: 12px 0;
+  background: rgba(11, 75, 67, 0.98);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.navDrawer a,
+.navDrawer .navDrawerAction {
+  display: block;
+  padding: 14px 20px;
+  color: var(--muted);
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+.navDrawer a:last-child,
+.navDrawer .navDrawerAction:last-child {
+  border-bottom: none;
+}
+.navDrawer a:hover,
+.navDrawer .navDrawerAction:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
 .search {
   flex: 1;
   max-width: 280px;
@@ -598,7 +647,11 @@ footer {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+  .navLinks {
+    display: none;
+  }
   .navActions {
+    display: none;
     min-width: auto;
   }
   .search {
@@ -628,9 +681,18 @@ footer {
   .hero h1 {
     font-size: 40px;
   }
+  .navMenuBtn {
+    display: flex;
+  }
+  .navDrawer.isOpen {
+    display: flex;
+  }
 }
 @media (max-width: 520px) {
   .navLinks {
+    display: none;
+  }
+  .navActions {
     display: none;
   }
   .hero h1 {
