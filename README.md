@@ -7,7 +7,7 @@
 ## 🎯 Features
 
 - **Public browse** — Search and filter lost & found items by type (found/lost), status (open/claimed/returned), building, category, date range, and keywords. Sort by newest, oldest, or title.
-- **Admin panel** — Secure login for staff with a single hardcoded super-admin account. Dashboard with KPIs and a status donut chart; full CRUD for items (add, edit status, delete) scoped by building.
+- **Admin panel** — Secure login for staff with a single hardcoded super-admin account. Dashboard with a status donut chart; full CRUD for items (add, edit status, delete) scoped by building.
 - **Add items** — Admin form to log new items with type, category, location, date, description, optional photo (base64), and tags. Building is auto-filled from the logged-in admin.
 - **Item cards** — Each listing shows a thumbnail (placeholder or uploaded image), type/status badges, title, description, category, location, date, and a “Copy share text” action for easy sharing.
 - **Responsive UI** — Layouts adapt for mobile and desktop. Admin and browse pages use a consistent teal/gold theme with clear navigation and toasts for feedback.
@@ -76,10 +76,11 @@ The app is a single-page React application. Routing is handled by React Router; 
   - `/admin/login` — Admin login.
   - `/admin/dashboard` — Admin overview (KPIs, chart, recent items).
   - `/admin/items` — Admin items list (search, filter, status actions, delete).
+  - `/admin/claims` — Admin claim review (pending claims with unique identifying detail; approve, reject, or mark returned).
   - `/admin/add-item` — Form to add a new lost/found item.
 
 - **Data**
-  - Items and admin session are stored in **localStorage** under keys `lf_items` and `lf_admin_session`. Clearing site data or using a private window gives a fresh state; the seed runs again when `lf_items` is empty.
+  - Items, claims, and admin session are stored in **localStorage** under keys `lf_items`, `lf_claims`, and `lf_admin_session`. Clearing site data or using a private window gives a fresh state; the seed runs again when `lf_items` is empty.
 
 - **Customization**
   - Super-admin credentials and building: edit `SUPER_ADMIN` in `src/pages/admin/adminStorage.js`.
