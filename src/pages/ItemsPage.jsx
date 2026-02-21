@@ -1,8 +1,9 @@
 import { useState, useMemo, useCallback } from 'react';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { Link } from 'react-router-dom';
-import { getItems, BUILDINGS } from './admin/adminStorage';
+import { getItems, BUILDINGS, addClaim } from './admin/adminStorage';
 import ItemCard from './ItemCard';
+import ClaimModal from './ClaimModal';
 import './ItemsPage.css';
 
 function normalize(s) {
@@ -120,6 +121,7 @@ export default function ItemsPage() {
   );
   const [filterState, setFilterState] = useState(defaultFilterState);
   const [toastMessage, setToastMessage] = useState(null);
+  const [claimModalItem, setClaimModalItem] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const items = useMemo(() => getItems(), [refreshKey]);
@@ -145,6 +147,14 @@ export default function ItemsPage() {
   const handleClear = useCallback(() => {
     setFilterState(defaultFilterState);
   }, []);
+
+  const handleClaimSubmit = useCallback(
+    (claim) => {
+      addClaim(claim);
+      setClaimModalItem(null);
+    },
+    []
+  );
 
   const updateFilter = useCallback((key, value) => {
     setFilterState((prev) => ({ ...prev, [key]: value }));
@@ -386,7 +396,7 @@ export default function ItemsPage() {
               <ItemCard
                 key={item.id}
                 item={item}
-                onCopyToast={showToast}
+                onClaimClick={(i) => setClaimModalItem(i)}
               />
             ))}
           </div>
@@ -398,6 +408,15 @@ export default function ItemsPage() {
           )}
         </section>
       </main>
+
+      {claimModalItem && (
+        <ClaimModal
+          item={claimModalItem}
+          onClose={() => setClaimModalItem(null)}
+          onSubmit={handleClaimSubmit}
+          onToast={showToast}
+        />
+      )}
 
       {toastMessage && (
         <div

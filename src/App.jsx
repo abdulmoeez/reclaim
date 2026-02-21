@@ -7,6 +7,7 @@ import {
   AdminDashboard,
   AdminItems,
   AdminAddItem,
+  AdminClaims,
 } from './pages/admin';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="/admin/items" element={<AdminItems />} />
+        <Route path="/admin/claims" element={<AdminClaims />} />
         <Route path="/admin/add-item" element={<AdminAddItem />} />
       </Routes>
     </AdminProvider>

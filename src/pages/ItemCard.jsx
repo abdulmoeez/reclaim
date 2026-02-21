@@ -1,25 +1,8 @@
 import PropTypes from 'prop-types';
 import { escapeHtml } from './admin/adminStorage';
 
-function copyShareText(item, onToast) {
-  const text = `Campus Lost & Found
-${item.type.toUpperCase()} • ${item.status.toUpperCase()}
-${item.title}
-Building: ${item.building}
-Location: ${item.location}
-Date: ${item.date}
-Category: ${item.category}
-
-Tip: If claiming, describe a unique identifying detail.`;
-
-  navigator.clipboard
-    .writeText(text)
-    .then(() => onToast('Copied!'))
-    .catch(() => onToast("Couldn't copy (browser blocked)."));
-}
-
-export default function ItemCard({ item, onCopyToast }) {
-  const handleCopy = () => copyShareText(item, onCopyToast);
+export default function ItemCard({ item, onClaimClick }) {
+  const showClaim = item.status !== 'returned' && typeof onClaimClick === 'function';
 
   return (
     <article className="card">
@@ -64,16 +47,18 @@ export default function ItemCard({ item, onCopyToast }) {
           <span className="small">Date:</span> {escapeHtml(item.date || '—')}
         </div>
       </div>
-      <div style={{ marginTop: 12, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-        <button
-          type="button"
-          className="btn small ghost"
-          onClick={handleCopy}
-          aria-label="Copy share text"
-        >
-          Copy share text
-        </button>
-      </div>
+      {showClaim && (
+        <div style={{ marginTop: 12 }}>
+          <button
+            type="button"
+            className="btn small primary"
+            onClick={() => onClaimClick(item)}
+            aria-label="Claim this item"
+          >
+            Claim
+          </button>
+        </div>
+      )}
     </article>
   );
 }
@@ -92,5 +77,5 @@ ItemCard.propTypes = {
     photoDataUrl: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  onCopyToast: PropTypes.func.isRequired,
+  onClaimClick: PropTypes.func,
 };

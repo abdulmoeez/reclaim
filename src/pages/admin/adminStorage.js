@@ -3,6 +3,7 @@
 export const LS = {
   SESSION: 'lf_admin_session',
   ITEMS: 'lf_items',
+  CLAIMS: 'lf_claims',
 };
 
 /** Hardcoded super user — only this account can log in to the admin panel. */
@@ -387,6 +388,46 @@ export function escapeHtml(str) {
 
 export function fmtDate(d) {
   return d || '';
+}
+
+/** Claims – public claim submissions for items (unique detail, claimant info). */
+export function getClaims() {
+  try {
+    return JSON.parse(localStorage.getItem(LS.CLAIMS) || '[]');
+  } catch {
+    return [];
+  }
+}
+
+export function setClaims(list) {
+  localStorage.setItem(LS.CLAIMS, JSON.stringify(list));
+}
+
+export function addClaim(claim) {
+  const id = cryptoRandomId();
+  const now = Date.now();
+  const record = {
+    id,
+    itemId: claim.itemId,
+    claimantName: claim.claimantName.trim(),
+    claimantEmail: claim.claimantEmail.trim().toLowerCase(),
+    uniqueDetail: claim.uniqueDetail.trim(),
+    status: 'pending',
+    submittedAt: now,
+  };
+  const list = getClaims();
+  list.push(record);
+  setClaims(list);
+  return record;
+}
+
+export function updateClaimStatus(claimId, status) {
+  const list = getClaims();
+  const idx = list.findIndex((c) => c.id === claimId);
+  if (idx === -1) return;
+  list[idx].status = status;
+  list[idx].resolvedAt = Date.now();
+  setClaims(list);
 }
 
 export function fileToDataUrl(file) {

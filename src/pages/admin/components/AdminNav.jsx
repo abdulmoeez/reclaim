@@ -12,11 +12,7 @@ export default function AdminNav() {
     navigate('/admin/login', { replace: true });
   }
 
-  const whoText = session?.building
-    ? `${session.building} Admin • ${session.email}`
-    : session?.email
-      ? `Admin • ${session.email}`
-      : 'Not signed in';
+  const whoText = `Admin • ${session.email}`
 
   return (
     <header className="nav">
@@ -24,13 +20,13 @@ export default function AdminNav() {
         <div className="navRow">
           <Link className="brand" to="/admin/dashboard">
             <img src="/logo.png" alt="" className="logo" />
-            <span>(Admin Panel)</span>
+            <span>(Admin)</span>
           </Link>
 
           <nav className="navLinks" aria-label="Admin navigation">
             <Link to="/admin/dashboard">Dashboard</Link>
             <Link to="/admin/items">Items</Link>
-            <Link to="/admin/add-item">Add Item</Link>
+            <Link to="/admin/claims">Claims</Link>
             <Link to="/">Public Site</Link>
           </nav>
 
@@ -59,6 +55,7 @@ export default function AdminNav() {
         <div className={`navDrawer ${mobileNavOpen ? 'isOpen' : ''}`}>
           <Link to="/admin/dashboard" onClick={() => setMobileNavOpen(false)}>Dashboard</Link>
           <Link to="/admin/items" onClick={() => setMobileNavOpen(false)}>Items</Link>
+          <Link to="/admin/claims" onClick={() => setMobileNavOpen(false)}>Claims</Link>
           <Link to="/admin/add-item" onClick={() => setMobileNavOpen(false)}>Add Item</Link>
           <Link to="/" onClick={() => setMobileNavOpen(false)}>Public Site</Link>
           <span className="navDrawerAction small" style={{ paddingTop: 8, paddingBottom: 8 }}>{whoText}</span>
