@@ -57,6 +57,10 @@ export default function ItemCard({ item, onCopyToast }) {
           {escapeHtml(item.location || '—')}
         </div>
         <div>
+          <span className="small">Contact:</span>{' '}
+          202-202-2022
+        </div>
+        <div>
           <span className="small">Date:</span> {escapeHtml(item.date || '—')}
         </div>
       </div>
